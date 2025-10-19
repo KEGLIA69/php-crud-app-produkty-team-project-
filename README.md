@@ -23,7 +23,7 @@ Jest to aplikacja end-to-end, która pozwala zarządzać listą produktów.
 ## 📦 Instalacja i uruchomienie
 
 1. Sklonuj repozytorium:
-```bash
+```bash https://github.com/KEGLIA69/php-crud-app-produkty-team-project-```
 
 ---
 
@@ -53,4 +53,4 @@ This is an end-to-end application that allows you to manage a product list.
 ## 📦 Installation and launch
 
 1. Clone the repository:
-```bash
+```bash https://github.com/KEGLIA69/php-crud-app-produkty-team-project-```
