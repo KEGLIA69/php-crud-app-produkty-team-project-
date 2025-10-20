@@ -1,4 +1,4 @@
-# CRUD Application - Product Management (PL/EN)
+# CRUD Application - Product Management (EN)
 
 This is an end-to-end application that allows you to manage a product list.
 
