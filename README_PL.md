@@ -1,4 +1,4 @@
-# Aplikacja CRUD - Zarządzanie produktami (PL/EN)
+# Aplikacja CRUD - Zarządzanie produktami (PL)
 
 Jest to aplikacja end-to-end, która pozwala zarządzać listą produktów.
 
@@ -23,10 +23,9 @@ Jest to aplikacja end-to-end, która pozwala zarządzać listą produktów.
 ## 📦 Instalacja i uruchomienie
 
 1. Sklonuj repozytorium:
-```` ```bash
-https://github.com/KEGLIA69/php-crud-app-produkty-team-project-````
+```bash
+https://github.com/KEGLIA69/php-crud-app-produkty-team-project-
 
----
 
 # CRUD Application - Product Management (PL/EN)
 
