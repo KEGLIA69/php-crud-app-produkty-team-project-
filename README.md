@@ -17,7 +17,7 @@ Aplikacja pozwala dodawać, przeglądać, edytować i usuwać produkty – czyli
 ---
 
 ## Struktura projektu
-/php-crud-app-produkty-team-project
+```/php-crud-app-produkty-team-project
 │
 ├── index.php # Lista produktów (Read)
 ├── create.php # Dodawanie produktu (Create)
@@ -26,7 +26,7 @@ Aplikacja pozwala dodawać, przeglądać, edytować i usuwać produkty – czyli
 ├── db.php # Połączenie z bazą danych
 ├── style.css # Stylizacja strony
 └── database.sql # Struktura bazy danych
-
+```
 
 ---
 
