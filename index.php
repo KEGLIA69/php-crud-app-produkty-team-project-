@@ -43,6 +43,10 @@ include 'db.php';
       }
     ?>
   </table>
+
+  <br>
+  <a href="categories.php">Idź do kategorij ➡️</a>
+
 </body>
 </html>
 

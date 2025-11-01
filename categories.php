@@ -69,7 +69,7 @@ $result = $conn->query("SELECT * FROM categories");
     <label>Opis (opcjonalnie):</label>
     <textarea name="description"></textarea>
     
-    <button type="submit" name="add">Dodać</button>
+    <button type="submit" name="add">➕ Dodać</button>
 </form>
 
 <!-- Categories list -->
@@ -92,11 +92,11 @@ $result = $conn->query("SELECT * FROM categories");
                     <input type="hidden" name="id" value="<?= $row['id'] ?>">
                     <input type="text" name="name" value="<?= htmlspecialchars($row['name']) ?>" required>
                     <input type="text" name="description" value="<?= htmlspecialchars($row['description']) ?>">
-                    <button type="submit" name="update">💾 Ratować</button>
+                    <button type="submit" name="update">💾 Ratuj</button>
                 </form>
 
                 <!-- Delete link -->
-                <a href="?delete=<?= $row['id'] ?>" onclick="return confirm('Delete this category?')">🗑️ Usuwać</a>
+                <a href="?delete=<?= $row['id'] ?>" onclick="return confirm('Delete this category?')">🗑️ Usuń</a>
             </td>
         </tr>
     <?php endwhile; ?>
