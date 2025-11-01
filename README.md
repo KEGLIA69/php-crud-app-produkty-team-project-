@@ -1,27 +1,46 @@
-# Aplikacja CRUD - Zarządzanie produktami (PL)
+# 🧺 PHP CRUD – Katalog Produktów Spożywczych
 
-Jest to aplikacja end-to-end, która pozwala zarządzać listą produktów.
+Prosty projekt webowy napisany w **PHP** i **MySQL**, który umożliwia zarządzanie katalogiem produktów spożywczych.  
+Aplikacja pozwala dodawać, przeglądać, edytować i usuwać produkty – czyli pełny cykl **CRUD** (Create, Read, Update, Delete).
 
-## Jak uruchomić projekt
+---
 
-### Uruchomienie lokalne (z XAMPP)
+## Funkcje
 
-1.  Uruchom XAMPP (moduły Apache i MySQL).
-2.  Skopiuj folder projektu `crud-produkty` do katalogu `htdocs`.
-3.  Otwórz `http://localhost/phpmyadmin/` i stwórz nową bazę danych o nazwie `produkty_db`.
-4.  Wykonaj zapytanie z pliku `migracja.sql`, aby stworzyć tabelę `products`.
-5.  Otwórz w przeglądarce adres `http://localhost/crud-produkty/`.
+✅ Dodawanie nowych produktów  
+✅ Przeglądanie listy wszystkich produktów  
+✅ Edycja danych produktu (nazwa, cena, opis)  
+✅ Usuwanie produktu z katalogu  
+✅ Prosty, responsywny interfejs w HTML + CSS  
+✅ Połączenie z bazą danych MySQL
 
-## Opis endpointów (API)
+---
 
-*   **`GET /api/entities`**: Pobiera listę wszystkich produktów.
-*   **`GET /api/entities/{id}`**: Pobiera jeden produkt o podanym ID.
-*   **`POST /api/entities`**: Dodaje nowy produkt. Wymagane ciało żądania w JSON: `{"name": "...", "description": "...", "price": ...}`.
-*   **`PUT /api/entities/{id}`**: Aktualizuje dane produktu o podanym ID.
-*   **`DELETE /api/entities/{id}`**: Usuwa produkt o podanym ID.
+## Struktura projektu
+/php-crud-app-produkty-team-project
+│
+├── index.php # Lista produktów (Read)
+├── create.php # Dodawanie produktu (Create)
+├── update.php # Edycja produktu (Update)
+├── delete.php # Usuwanie produktu (Delete)
+├── db.php # Połączenie z bazą danych
+├── style.css # Stylizacja strony
+└── database.sql # Struktura bazy danych
 
-## 📦 Instalacja i uruchomienie
 
-1. Sklonuj repozytorium:
-```bash
-https://github.com/KEGLIA69/php-crud-app-produkty-team-project-
+---
+
+## Wymagania
+
+- **XAMPP / MAMP / Laragon** lub inny lokalny serwer PHP  
+- PHP w wersji 7.4+  
+- MySQL lub MariaDB  
+- Przeglądarka internetowa (Chrome, Firefox itp.)
+
+---
+
+## 🧠 Instalacja i uruchomienie
+
+1. Skopiuj repozytorium:
+   ```bash
+   git clone https://github.com/KEGLIA69/php-crud-app-produkty-team-project-.git
