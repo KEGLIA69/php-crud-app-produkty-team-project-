@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Katalog produktów</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🍎 Katalog produktów spożywczych</h1>
+  <a href="create.html" class="btn">➕ Dodaj produkt</a>
+
+  <table id="products-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nazwa</th>
+        <th>Cena</th>
+        <th>Opis</th>
+        <th>Akcje</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    fetch('../api/index.php') // забираем данные из PHP
+      .then(res => res.json())
+      .then(data => {
+        const tbody = document.querySelector('tbody');
+        data.forEach(p => {
+          tbody.innerHTML += `
+            <tr>
+              <td>${p.id}</td>
+              <td>${p.name}</td>
+              <td>${p.price} zł</td>
+              <td>${p.description}</td>
+              <td>
+                <a href="update.html?id=${p.id}">✏️</a>
+                <a href="../delete.php?id=${p.id}">🗑️</a>
+              </td>
+            </tr>`;
+        });
+      });
+  </script>
+</body>
+</html>
+

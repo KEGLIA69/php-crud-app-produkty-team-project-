@@ -1,13 +1,20 @@
 <?php
 include 'db.php';
 
-$id = $_GET['id'];
-$sql = "DELETE FROM products WHERE id=$id";
-
-if ($conn->query($sql) === TRUE) {
-    header("Location: index.php");
-    exit();
-} else {
-    echo "❌ Błąd usuwania: " . $conn->error;
+$id = $_GET['id'] ?? null;
+if (!$id) {
+    die("Brak ID produktu");
 }
+
+$stmt = $conn->prepare("DELETE FROM products WHERE id=?");
+$stmt->bind_param("i", $id);
+
+if ($stmt->execute()) {
+    echo "Produkt usunięty";
+} else {
+    echo "Błąd: " . $stmt->error;
+}
+
+$stmt->close();
+$conn->close();
 ?>

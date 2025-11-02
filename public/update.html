@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Edytuj produkt</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>✏️ Edytuj produkt</h1>
+
+  <form onsubmit="return updateProduct(this, id)">
+    <label>Nazwa:</label>
+    <input type="text" name="name" required>
+
+    <label>Cena:</label>
+    <input type="number" step="0.01" name="price" required>
+
+    <label>Opis:</label>
+    <textarea name="description"></textarea>
+
+    <button type="submit">Zapisz zmiany</button>
+    <a href="index.html" class="btn">↩️ Powrót</a>
+  </form>
+
+  <script src="js/main.js"></script>
+  <script>
+    const id = new URLSearchParams(location.search).get('id');
+
+    fetch(`../api/index.php`)
+      .then(res => res.json())
+      .then(data => {
+        const product = data.find(p => p.id == id);
+        if (!product) return alert('Produkt nie znaleziony');
+
+        document.querySelector('[name="name"]').value = product.name;
+        document.querySelector('[name="price"]').value = product.price;
+        document.querySelector('[name="description"]').value = product.description;
+      });
+  </script>
+</body>
+</html>
