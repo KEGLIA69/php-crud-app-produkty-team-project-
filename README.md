@@ -39,15 +39,6 @@ public/
 
 ---
 
-## Wymagania
-
-- **XAMPP / MAMP / Laragon** lub inny lokalny serwer PHP  
-- PHP w wersji 7.4+  
-- MySQL lub MariaDB  
-- Przeglądarka internetowa (Chrome, Firefox itp.)
-
----
-
 ## 🧠 Instalacja i uruchomienie
 
 1. Skopiuj repozytorium:
