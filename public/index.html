@@ -23,7 +23,7 @@
   </table>
 
   <script>
-    fetch('../api/index.php') // забираем данные из PHP
+    fetch('./api/index.php') // забираем данные из PHP
       .then(res => res.json())
       .then(data => {
         const tbody = document.querySelector('tbody');
