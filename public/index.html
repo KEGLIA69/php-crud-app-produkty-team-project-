@@ -8,12 +8,13 @@
 <body>
   <h1>Produkty</h1>
   <a href="create.html"><button>Dodaj produkt</button></a>
+  <a href="logout.php"><button>Wyloguj</button></a>
 
   <table border="1" id="products-table">
     <thead>
       <tr>
-        <th class="id-col">ID</th> <!-- скрытый -->
-        <th>#</th> <!-- порядковый номер -->
+        <th class="id-col">ID</th> 
+        <th>#</th> 
         <th>Nazwa</th>
         <th>Cena</th>
         <th>Opis</th>
@@ -23,7 +24,14 @@
     <tbody></tbody>
   </table>
 
+ 
+  <h2>Pogoda</h2>
+  <input id="city" placeholder="Wpisz miasto (np. Warsaw)">
+  <button onclick="getWeather()">Pokaż pogodę</button>
+  <div id="weather"></div>
+
   <script>
+    
     function loadProducts() {
       fetch('api/index.php')
         .then(res => res.json())
@@ -55,12 +63,33 @@
         .catch(err => console.error(err));
     }
 
-    // Загрузка продуктов при открытии страницы
     loadProducts();
+
+    fetch('api/index.php')
+      .then(res => {
+        if(res.status === 401){
+          window.location.href = 'login.php';
+        }
+      });
+
+    // --- Функция погоды ---
+    async function getWeather() {
+        const city = document.getElementById('city').value;
+        const resultDiv = document.getElementById('weather');
+        resultDiv.innerHTML = 'Ładowanie...';
+
+        try {
+            const res = await fetch(`api/weather.php?city=${city}`);
+            if (!res.ok) throw new Error('Błąd ' + res.status);
+            const data = await res.json();
+            resultDiv.innerHTML = `Aktualnie: ${data.temperature_now}°C<br>Prognoza: ${data.forecast.join(", ")}`;
+        } catch (err) {
+            resultDiv.innerHTML = 'Błąd: ' + err.message;
+        }
+    }
   </script>
+
 </body>
 </html>
-
-
 
 

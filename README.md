@@ -18,23 +18,24 @@ Aplikacja pozwala dodawać, przeglądać, edytować i usuwać produkty – czyli
 
 ## Struktura projektu
 ```/php-crud-app-produkty-team-project
-public/
-├── api/                    # Server(PHP)
-│   ├── db.php
-│   ├── index.php           # GET /products
-│   ├── create.php          # POST /products
-│   ├── update.php          # PUT /products/:id
-│   └── delete.php          # DELETE /products/:id
-│
-├── public/                 # ALL, that user seen
-│   ├── index.html
-│   ├── create.html
-│   ├── update.html
-│   ├── style.css
-│   └── js/
-│       └── main.js
-│
-└── database.sql
+php-crud-app-produkty-team-project-/
+├─ public/                      <-- strony publiczne i CSS
+│   ├─ index.html               <-- strona główna z tabelą produktów
+│   ├─ create.html              <-- strona dodawania nowego produktu
+│   ├─ update.html              <-- strona edycji produktu
+│   ├─ login.php                <-- strona logowania
+│   ├─ logout.php               <-- wylogowanie
+│   ├─ style.css                <-- style dla wszystkich stron
+│   └─ api/                     <-- folder ze skryptami PHP dla CRUD i integracji pogodowej
+│       ├─ index.php            <-- pobieranie listy produktów (GET)
+│       ├─ create.php           <-- dodawanie produktu (POST)
+│       ├─ update.php           <-- aktualizacja produktu (POST)
+│       ├─ delete.php           <-- usuwanie produktu (GET lub POST)
+│       └─ weather.php          <-- pobieranie prognozy pogody z Open-Meteo
+├─ .git/                        <-- folder Git (jeśli używasz)
+├─ README.md                    <-- opis projektu (opcjonalnie)                      
+└─ db.php                       <-- połączenie z MySQL
+
 ```
 
 ---

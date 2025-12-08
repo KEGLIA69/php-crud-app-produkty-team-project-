@@ -15,13 +15,13 @@
   </form>
 
   <script>
-    // получаем id из URL
+    
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
 
     const form = document.getElementById('updateForm');
 
-    // при сабмите формы отправляем fetch к update.php
+  
     form.addEventListener('submit', function(e) {
       e.preventDefault();
 
@@ -39,7 +39,7 @@
         .catch(err => console.error(err));
     });
 
-    // Опционально: можно загрузить данные продукта через API и подставить в форму
+   
     fetch(`api/index.php`)
       .then(res => res.json())
       .then(products => {
@@ -51,5 +51,15 @@
         }
       });
   </script>
+
+  <script>
+fetch('api/index.php')
+  .then(res => {
+    if(res.status === 401){
+      window.location.href = 'login.php';
+    }
+  });
+</script>
+
 </body>
 </html>

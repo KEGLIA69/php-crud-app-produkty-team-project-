@@ -1,5 +1,5 @@
 function loadProducts() {
-  fetch('api/index.php')  // убрали ../
+  fetch('api/index.php')  
     .then(res => res.json())
     .then(products => {
       const tbody = document.querySelector('#products-table tbody');
@@ -22,7 +22,7 @@ function loadProducts() {
 function deleteProduct(id) {
   if (!confirm('Czy na pewno chcesz usunąć produkt?')) return;
 
-  fetch('api/delete.php?id=' + id)  // путь относительно public/index.html
+  fetch('api/delete.php?id=' + id)  
     .then(res => res.text())
     .then(() => loadProducts())
     .catch(err => console.error('Błąd podczas usuwania produktu:', err));
