@@ -1,5 +1,5 @@
 function loadProducts() {
-  fetch('../api/index.php')
+  fetch('api/index.php')  // убрали ../
     .then(res => res.json())
     .then(products => {
       const tbody = document.querySelector('#products-table tbody');
@@ -22,16 +22,17 @@ function loadProducts() {
 function deleteProduct(id) {
   if (!confirm('Czy na pewno chcesz usunąć produkt?')) return;
 
-  fetch(`../api/delete.php?id=${id}`)
+  fetch('api/delete.php?id=' + id)  // путь относительно public/index.html
     .then(res => res.text())
     .then(() => loadProducts())
     .catch(err => console.error('Błąd podczas usuwania produktu:', err));
 }
 
+
 function createProduct(form) {
   const data = new FormData(form);
 
-  fetch('../api/create.php', {
+  fetch('api/create.php', {
     method: 'POST',
     body: data
   })
@@ -48,14 +49,14 @@ function createProduct(form) {
 function updateProduct(form, id) {
   const data = new FormData(form);
 
-  fetch(`../api/update.php?id=${id}`, {
+  fetch(`api/update.php?id=${id}`, {
     method: 'POST',
     body: data
   })
     .then(res => res.text())
     .then(() => {
       alert('Produkt zaktualizowany!');
-      window.location.href = 'index.html';
+      window.location.href = 'index.html'; 
     })
     .catch(err => console.error('Błąd aktualizacji produktu:', err));
 

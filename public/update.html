@@ -6,35 +6,49 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>✏️ Edytuj produkt</h1>
-
-  <form onsubmit="return updateProduct(this, id)">
-    <label>Nazwa:</label>
-    <input type="text" name="name" required>
-
-    <label>Cena:</label>
-    <input type="number" step="0.01" name="price" required>
-
-    <label>Opis:</label>
-    <textarea name="description"></textarea>
-
-    <button type="submit">Zapisz zmiany</button>
-    <a href="index.html" class="btn">↩️ Powrót</a>
+  <h1>Edytuj produkt</h1>
+  <form id="updateForm">
+    <input type="text" name="name" placeholder="Nazwa" required><br>
+    <input type="number" name="price" placeholder="Cena" required><br>
+    <textarea name="description" placeholder="Opis"></textarea><br>
+    <button type="submit">Zaktualizuj</button>
   </form>
 
-  <script src="js/main.js"></script>
   <script>
-    const id = new URLSearchParams(location.search).get('id');
+    // получаем id из URL
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
 
-    fetch(`../api/index.php`)
+    const form = document.getElementById('updateForm');
+
+    // при сабмите формы отправляем fetch к update.php
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const data = new FormData(form);
+
+      fetch(`api/update.php?id=${id}`, {
+        method: 'POST',
+        body: data
+      })
+        .then(res => res.text())
+        .then(() => {
+          alert('Produkt zaktualizowany!');
+          window.location.href = 'index.html';
+        })
+        .catch(err => console.error(err));
+    });
+
+    // Опционально: можно загрузить данные продукта через API и подставить в форму
+    fetch(`api/index.php`)
       .then(res => res.json())
-      .then(data => {
-        const product = data.find(p => p.id == id);
-        if (!product) return alert('Produkt nie znaleziony');
-
-        document.querySelector('[name="name"]').value = product.name;
-        document.querySelector('[name="price"]').value = product.price;
-        document.querySelector('[name="description"]').value = product.description;
+      .then(products => {
+        const product = products.find(p => p.id == id);
+        if (product) {
+          form.name.value = product.name;
+          form.price.value = product.price;
+          form.description.value = product.description;
+        }
       });
   </script>
 </body>

@@ -2,17 +2,18 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <title>Katalog produktów</title>
+  <title>Lista produktów</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>🍎 Katalog produktów spożywczych</h1>
-  <a href="create.html" class="btn">➕ Dodaj produkt</a>
+  <h1>Produkty</h1>
+  <a href="create.html"><button>Dodaj produkt</button></a>
 
-  <table id="products-table">
+  <table border="1" id="products-table">
     <thead>
       <tr>
-        <th>ID</th>
+        <th class="id-col">ID</th> <!-- скрытый -->
+        <th>#</th> <!-- порядковый номер -->
         <th>Nazwa</th>
         <th>Cena</th>
         <th>Opis</th>
@@ -23,25 +24,43 @@
   </table>
 
   <script>
-    fetch('./api/index.php') // забираем данные из PHP
-      .then(res => res.json())
-      .then(data => {
-        const tbody = document.querySelector('tbody');
-        data.forEach(p => {
-          tbody.innerHTML += `
+    function loadProducts() {
+      fetch('api/index.php')
+        .then(res => res.json())
+        .then(products => {
+          const tbody = document.querySelector('#products-table tbody');
+          tbody.innerHTML = products.map((p, index) => `
             <tr>
-              <td>${p.id}</td>
+              <td class="id-col">${p.id}</td> <!-- скрытый id для JS -->
+              <td>${index + 1}</td> <!-- порядковый номер -->
               <td>${p.name}</td>
               <td>${p.price} zł</td>
               <td>${p.description}</td>
               <td>
                 <a href="update.html?id=${p.id}">✏️</a>
-                <a href="../delete.php?id=${p.id}">🗑️</a>
+                <a href="#" onclick="deleteProduct(${p.id}); return false;">🗑️</a>
               </td>
-            </tr>`;
-        });
-      });
+            </tr>
+          `).join('');
+        })
+        .catch(err => console.error(err));
+    }
+
+    function deleteProduct(id) {
+      if (!confirm('Czy na pewno chcesz usunąć produkt?')) return;
+
+      fetch(`api/delete.php?id=${id}`)
+        .then(res => res.text())
+        .then(() => loadProducts())
+        .catch(err => console.error(err));
+    }
+
+    // Загрузка продуктов при открытии страницы
+    loadProducts();
   </script>
 </body>
 </html>
+
+
+
 
